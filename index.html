@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ActiveGear | Športové doplnky</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="#top">ActiveGear</a>
+      <div class="nav-links">
+        <a href="#kategorie">Kategórie</a>
+        <a href="#produkty">Produkty</a>
+        <a href="#kosik">Košík <span id="cart-count">0</span></a>
+        <a href="#o-nas">O nás</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Športové doplnky pre každý tréning</p>
+        <h1>Vybavenie, ktoré ťa podrží pri pohybe</h1>
+        <p class="hero-text">
+          Vyber si praktické pomôcky na cvičenie doma, v posilňovni aj vonku.
+          ActiveGear ponúka jednoduché produkty, ktoré sa hodia začiatočníkom aj pokročilým.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#produkty">Pozrieť produkty</a>
+          <a class="button secondary" href="#kategorie">Kategórie</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Prehľad výhod obchodu">
+        <div>
+          <strong>3</strong>
+          <span>prehľadné kategórie</span>
+        </div>
+        <div>
+          <strong>5</strong>
+          <span>vybraných produktov</span>
+        </div>
+        <div>
+          <strong>24 h</strong>
+          <span>rýchle vybavenie objednávky</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro" id="o-nas">
+      <div>
+        <p class="eyebrow">O nás</p>
+        <h2>ActiveGear je môj školský e-shop</h2>
+      </div>
+      <div class="about-text">
+        <p>
+          Tento e-shop vytvoril <strong>Peter Šoltys</strong>. Stránka je zameraná na športové
+          doplnky pre bežný tréning, cvičenie doma aj návštevu posilňovne.
+        </p>
+        <p>
+          Sortiment je rozdelený do jednoduchých kategórií, aby si zákazník rýchlo našiel pomôcku,
+          ktorú potrebuje: hydratáciu, tréningové pomôcky alebo fitness vybavenie.
+        </p>
+      </div>
+    </section>
+
+    <section class="section categories" id="kategorie">
+      <div class="section-heading">
+        <p class="eyebrow">Kategórie</p>
+        <h2>Vyber si podľa typu tréningu</h2>
+      </div>
+
+      <div class="category-grid">
+        <article class="category-card">
+          <span>01</span>
+          <h3>Hydratácia a regenerácia</h3>
+          <p>Fľaše a shakery, ktoré sa hodia na tréning, do školy aj po cvičení.</p>
+        </article>
+
+        <article class="category-card">
+          <span>02</span>
+          <h3>Domáci tréning</h3>
+          <p>Pomôcky na jednoduché posilňovanie a zlepšovanie kondície bez veľkého vybavenia.</p>
+        </article>
+
+        <article class="category-card">
+          <span>03</span>
+          <h3>Fitness vybavenie</h3>
+          <p>Doplnky do posilňovne, ktoré zlepšujú pohodlie a istotu pri cvičení.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="produkty">
+      <div class="section-heading">
+        <p class="eyebrow">Naša ponuka</p>
+        <h2>Najpredávanejšie produkty</h2>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <img src="assets/bottle.svg" alt="Športová fľaša">
+          <div class="product-info">
+            <p class="tag">Hydratácia</p>
+            <h3>Športová fľaša</h3>
+            <p>Ľahká fľaša s objemom 750 ml, vhodná do školy, fitka aj na beh.</p>
+            <div class="product-footer">
+              <span class="price">9,90 €</span>
+              <button class="add-to-cart" data-name="Športová fľaša" data-price="9.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="assets/bands.svg" alt="Odporové gumy">
+          <div class="product-info">
+            <p class="tag">Domáci tréning</p>
+            <h3>Odporové gumy</h3>
+            <p>Sada troch gúm s rôznym odporom na rozcvičku, rehabilitáciu aj posilňovanie.</p>
+            <div class="product-footer">
+              <span class="price">14,50 €</span>
+              <button class="add-to-cart" data-name="Odporové gumy" data-price="14.50">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="assets/rope.svg" alt="Švihadlo">
+          <div class="product-info">
+            <p class="tag">Kondícia</p>
+            <h3>Rýchlostné švihadlo</h3>
+            <p>Nastaviteľné švihadlo na kondičný tréning, spaľovanie energie a koordináciu.</p>
+            <div class="product-footer">
+              <span class="price">11,90 €</span>
+              <button class="add-to-cart" data-name="Rýchlostné švihadlo" data-price="11.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="assets/gloves.svg" alt="Fitness rukavice">
+          <div class="product-info">
+            <p class="tag">Fitness vybavenie</p>
+            <h3>Fitness rukavice</h3>
+            <p>Pohodlné rukavice s pevným úchopom, ktoré chránia ruky pri cvičení s činkami.</p>
+            <div class="product-footer">
+              <span class="price">16,90 €</span>
+              <button class="add-to-cart" data-name="Fitness rukavice" data-price="16.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card featured">
+          <img src="assets/shaker.svg" alt="Proteínový shaker">
+          <div class="product-info">
+            <p class="tag">Regenerácia</p>
+            <h3>Proteínový shaker</h3>
+            <p>Praktický shaker s mierkou a sitkom na prípravu proteínových nápojov po tréningu.</p>
+            <div class="product-footer">
+              <span class="price">8,90 €</span>
+              <button class="add-to-cart" data-name="Proteínový shaker" data-price="8.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cart-section" id="kosik">
+      <div class="section-heading">
+        <p class="eyebrow">Košík</p>
+        <h2>Tvoja objednávka</h2>
+      </div>
+
+      <div class="cart-box">
+        <div id="cart-items" class="cart-items">
+          <p class="empty-cart">Košík je zatiaľ prázdny.</p>
+        </div>
+        <div class="cart-summary">
+          <span>Celková suma</span>
+          <strong id="cart-total">0,00 €</strong>
+          <button id="order-button" type="button">Objednať</button>
+        </div>
+        <p id="order-message" class="order-message" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section contact" id="kontakt">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Máš otázku k objednávke?</h2>
+        <p>Napíš nám a poradíme s výberom vhodného doplnku pre tvoj tréning.</p>
+      </div>
+      <form>
+        <label for="meno">Meno</label>
+        <input id="meno" type="text" placeholder="Tvoje meno">
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="tvoj@email.sk">
+
+        <label for="sprava">Správa</label>
+        <textarea id="sprava" rows="4" placeholder="S čím ti môžeme pomôcť?"></textarea>
+
+        <button type="submit">Odoslať správu</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ActiveGear. Peter Šoltys.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
