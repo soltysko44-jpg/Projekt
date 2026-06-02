@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ActiveGear | Športové doplnky</title>
+  <style>
+:root {
+  --ink: #17201d;
+  --muted: #61706a;
+  --paper: #f7f8f4;
+  --card: #ffffff;
+  --line: #dde4dc;
+  --green: #2e8b57;
+  --green-dark: #1c6840;
+  --orange: #f28c28;
+  --blue: #246b9f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(247, 248, 244, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.nav {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  color: var(--green-dark);
+}
+
+#cart-count {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  place-items: center;
+  color: #fff;
+  background: var(--green);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.hero {
+  min-height: calc(100vh - 72px);
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 54px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  gap: 46px;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 5.2rem;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 12px;
+  font-size: 2.7rem;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.hero-text {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.button,
+button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.button.primary,
+button {
+  background: var(--green);
+  color: #fff;
+}
+
+.button.primary:hover,
+button:hover {
+  background: var(--green-dark);
+}
+
+.button.secondary {
+  background: #e7eee8;
+  color: var(--ink);
+}
+
+.button.secondary:hover {
+  background: #d9e5dc;
+}
+
+.hero-panel {
+  min-height: 430px;
+  padding: 26px;
+  display: grid;
+  align-content: end;
+  gap: 14px;
+  background:
+    linear-gradient(145deg, rgba(23, 32, 29, 0.15), rgba(23, 32, 29, 0.08)),
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgOTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+xaBwb3J0b3bDqSB2eWJhdmVuaWU8L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5JbHVzdHLDoWNpYSDFoXBvcnRvdmVqIHRhxaFreSwgZsS+YcWhZSwgxaF2aWhhZGxhIGEgxI1pbmllay48L2Rlc2M+CiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9IiNkZmU5ZGYiLz4KICA8cGF0aCBkPSJNMTAwIDY5MGMxMTAtMTcwIDIzOC0yNTQgMzg0LTI1MiAxNDYgMiAyNTAtNjIgMzE2LTE5MnY0NTRIMTAweiIgZmlsbD0iI2I5ZDVjNCIvPgogIDxjaXJjbGUgY3g9IjY5NSIgY3k9IjE4NSIgcj0iODIiIGZpbGw9IiNmMjhjMjgiLz4KICA8cmVjdCB4PSIyMzUiIHk9IjQ4NSIgd2lkdGg9IjQzMCIgaGVpZ2h0PSIyMzAiIHJ4PSIzNCIgZmlsbD0iIzE3MjAxZCIvPgogIDxwYXRoIGQ9Ik0zNDAgNTAwYzEwLTg2IDUyLTEzMCAxMjYtMTMwczExNiA0NCAxMjYgMTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNzIwMWQiIHN0cm9rZS13aWR0aD0iMzgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxyZWN0IHg9IjI3NSIgeT0iNTM1IiB3aWR0aD0iMzUwIiBoZWlnaHQ9IjEzMCIgcng9IjE4IiBmaWxsPSIjMmU4YjU3Ii8+CiAgPHJlY3QgeD0iNTg1IiB5PSIzMTgiIHdpZHRoPSI4NiIgaGVpZ2h0PSIyNzgiIHJ4PSIzMiIgZmlsbD0iIzI0NmI5ZiIvPgogIDxyZWN0IHg9IjYwNSIgeT0iMjY4IiB3aWR0aD0iNDYiIGhlaWdodD0iNzAiIHJ4PSIxMiIgZmlsbD0iIzE3MjAxZCIvPgogIDxyZWN0IHg9IjYxMiIgeT0iMzcwIiB3aWR0aD0iMzIiIGhlaWdodD0iMTQ1IiByeD0iMTYiIGZpbGw9IiNkOGYwZGYiIG9wYWNpdHk9Ii43NSIvPgogIDxwYXRoIGQ9Ik0yNDUgMzMwYy05MiAyMC0xMTYgMTEzLTUxIDE2OSA2NiA1NiAxMzMgMiAxMTgtNjgtMTEtNTEtNjQtNzAtMTAzLTQzIiBmaWxsPSJub25lIiBzdHJva2U9IiNmMjhjMjgiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxyZWN0IHg9IjE1OCIgeT0iNTgzIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjM4IiByeD0iMTkiIGZpbGw9IiMxNzIwMWQiLz4KICA8cmVjdCB4PSI2MzIiIHk9IjU4MyIgd2lkdGg9IjExMCIgaGVpZ2h0PSIzOCIgcng9IjE5IiBmaWxsPSIjMTcyMDFkIi8+CiAgPHJlY3QgeD0iMjQ4IiB5PSI1NjAiIHdpZHRoPSIzODQiIGhlaWdodD0iODQiIHJ4PSI0MiIgZmlsbD0iIzM2NDEzZCIvPgo8L3N2Zz4K") center / cover no-repeat;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.hero-panel div {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 6px;
+}
+
+.hero-panel strong {
+  color: var(--green-dark);
+  font-size: 1.45rem;
+}
+
+.hero-panel span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.section {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  gap: 36px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.intro p:last-child,
+.contact p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.about-text {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.categories {
+  border-bottom: 1px solid var(--line);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.category-card {
+  min-height: 210px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.category-card span {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 22px;
+  place-items: center;
+  color: #fff;
+  background: var(--green);
+  border-radius: 6px;
+  font-weight: 900;
+}
+
+.category-card p {
+  color: var(--muted);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.product-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #edf2eb;
+}
+
+.product-info {
+  padding: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.product-info p:not(.tag) {
+  color: var(--muted);
+}
+
+.tag {
+  margin-bottom: 8px;
+  color: var(--orange);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.price {
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.featured {
+  border-color: rgba(242, 140, 40, 0.45);
+}
+
+.cart-section {
+  border-top: 1px solid var(--line);
+}
+
+.cart-box {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.cart-items {
+  display: grid;
+  gap: 12px;
+}
+
+.empty-cart {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cart-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  background: #f4f7f2;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.cart-row div {
+  display: grid;
+  gap: 2px;
+}
+
+.cart-row span {
+  color: var(--muted);
+}
+
+.cart-row button {
+  min-height: 38px;
+  padding: 9px 12px;
+  background: #e7eee8;
+  color: var(--ink);
+}
+
+.cart-row button:hover {
+  background: #d9e5dc;
+}
+
+.cart-summary {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.cart-summary span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.cart-summary strong {
+  font-size: 1.35rem;
+}
+
+.order-message {
+  margin: 0;
+  color: var(--green-dark);
+  font-weight: 800;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+  gap: 42px;
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+
+form {
+  display: grid;
+  gap: 10px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+label {
+  font-weight: 800;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #cbd6cf;
+  border-radius: 6px;
+  padding: 12px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+footer {
+  padding: 28px 16px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+footer p {
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  .hero,
+  .intro,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 46px;
+  }
+
+  .category-grid,
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  h1 {
+    font-size: 2.9rem;
+  }
+
+  h2 {
+    font-size: 1.95rem;
+  }
+
+  .nav {
+    min-height: 86px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 14px;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding-top: 34px;
+  }
+
+  .hero-actions {
+    display: grid;
+  }
+
+  .hero-panel {
+    min-height: 360px;
+    padding: 16px;
+  }
+
+  .hero-panel div {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .category-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cart-row,
+  .cart-summary {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .cart-row {
+    flex-direction: column;
+  }
+
+  button,
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="#top">ActiveGear</a>
+      <div class="nav-links">
+        <a href="#kategorie">Kategórie</a>
+        <a href="#produkty">Produkty</a>
+        <a href="#kosik">Košík <span id="cart-count">0</span></a>
+        <a href="#o-nas">O nás</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Športové doplnky pre každý tréning</p>
+        <h1>Vybavenie, ktoré ťa podrží pri pohybe</h1>
+        <p class="hero-text">
+          Vyber si praktické pomôcky na cvičenie doma, v posilňovni aj vonku.
+          ActiveGear ponúka jednoduché produkty, ktoré sa hodia začiatočníkom aj pokročilým.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#produkty">Pozrieť produkty</a>
+          <a class="button secondary" href="#kategorie">Kategórie</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Prehľad výhod obchodu">
+        <div>
+          <strong>3</strong>
+          <span>prehľadné kategórie</span>
+        </div>
+        <div>
+          <strong>5</strong>
+          <span>vybraných produktov</span>
+        </div>
+        <div>
+          <strong>24 h</strong>
+          <span>rýchle vybavenie objednávky</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro" id="o-nas">
+      <div>
+        <p class="eyebrow">O nás</p>
+        <h2>ActiveGear je môj školský e-shop</h2>
+      </div>
+      <div class="about-text">
+        <p>
+          Tento e-shop vytvoril <strong>Peter Šoltys</strong>. Stránka je zameraná na športové
+          doplnky pre bežný tréning, cvičenie doma aj návštevu posilňovne.
+        </p>
+        <p>
+          Sortiment je rozdelený do jednoduchých kategórií, aby si zákazník rýchlo našiel pomôcku,
+          ktorú potrebuje: hydratáciu, tréningové pomôcky alebo fitness vybavenie.
+        </p>
+      </div>
+    </section>
+
+    <section class="section categories" id="kategorie">
+      <div class="section-heading">
+        <p class="eyebrow">Kategórie</p>
+        <h2>Vyber si podľa typu tréningu</h2>
+      </div>
+
+      <div class="category-grid">
+        <article class="category-card">
+          <span>01</span>
+          <h3>Hydratácia a regenerácia</h3>
+          <p>Fľaše a shakery, ktoré sa hodia na tréning, do školy aj po cvičení.</p>
+        </article>
+
+        <article class="category-card">
+          <span>02</span>
+          <h3>Domáci tréning</h3>
+          <p>Pomôcky na jednoduché posilňovanie a zlepšovanie kondície bez veľkého vybavenia.</p>
+        </article>
+
+        <article class="category-card">
+          <span>03</span>
+          <h3>Fitness vybavenie</h3>
+          <p>Doplnky do posilňovne, ktoré zlepšujú pohodlie a istotu pri cvičení.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="produkty">
+      <div class="section-heading">
+        <p class="eyebrow">Naša ponuka</p>
+        <h2>Najpredávanejšie produkty</h2>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+xaBwb3J0b3bDoSBmxL5hxaFhPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+TW9kcsOhIMWhcG9ydG92w6EgZsS+YcWhYSBuYSBzdmV0bG9tIHBvemFkw60uPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIiBmaWxsPSIjZWRmMmViIi8+CiAgPGNpcmNsZSBjeD0iNDcwIiBjeT0iMTIwIiByPSI3MiIgZmlsbD0iI2YyOGMyOCIvPgogIDxyZWN0IHg9IjI0MiIgeT0iMTIwIiB3aWR0aD0iMTU2IiBoZWlnaHQ9IjI5MiIgcng9IjQ4IiBmaWxsPSIjMjQ2YjlmIi8+CiAgPHJlY3QgeD0iMjcwIiB5PSI3MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI3MCIgcng9IjE4IiBmaWxsPSIjMTcyMDFkIi8+CiAgPHJlY3QgeD0iMjgyIiB5PSI0MiIgd2lkdGg9Ijc2IiBoZWlnaHQ9IjM2IiByeD0iMTIiIGZpbGw9IiMyZThiNTciLz4KICA8cmVjdCB4PSIyODAiIHk9IjE4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE1MCIgcng9IjQwIiBmaWxsPSIjZDhmMGRmIiBvcGFjaXR5PSIuNzIiLz4KICA8cGF0aCBkPSJNMTYwIDM5MGgzMjAiIHN0cm9rZT0iI2NiZDZjZiIgc3Ryb2tlLXdpZHRoPSIyMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPgo=" alt="Športová fľaša">
+          <div class="product-info">
+            <p class="tag">Hydratácia</p>
+            <h3>Športová fľaša</h3>
+            <p>Ľahká fľaša s objemom 750 ml, vhodná do školy, fitka aj na beh.</p>
+            <div class="product-footer">
+              <span class="price">9,90 €</span>
+              <button class="add-to-cart" data-name="Športová fľaša" data-price="9.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+T2Rwb3JvdsOpIGd1bXk8L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5UcmkgZmFyZWJuw6kgb2Rwb3JvdsOpIGd1bXkgbmEgY3ZpxI1lbmllLjwvZGVzYz4KICA8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgZmlsbD0iI2VkZjJlYiIvPgogIDxlbGxpcHNlIGN4PSIzMjAiIGN5PSIyNDUiIHJ4PSIxNjUiIHJ5PSI5MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQwIi8+CiAgPGVsbGlwc2UgY3g9IjMyMCIgY3k9IjI1MCIgcng9IjEyMiIgcnk9IjY2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmMjhjMjgiIHN0cm9rZS13aWR0aD0iMzQiLz4KICA8ZWxsaXBzZSBjeD0iMzIwIiBjeT0iMjU1IiByeD0iODIiIHJ5PSI0MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjQ2YjlmIiBzdHJva2Utd2lkdGg9IjI4Ii8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMTMwIiByPSI0NCIgZmlsbD0iIzE3MjAxZCIvPgogIDxjaXJjbGUgY3g9IjQ5NCIgY3k9IjM2NSIgcj0iNTQiIGZpbGw9IiNiOWQ1YzQiLz4KICA8cGF0aCBkPSJNMTcwIDM5MGgzMDAiIHN0cm9rZT0iI2NiZDZjZiIgc3Ryb2tlLXdpZHRoPSIyMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPgo=" alt="Odporové gumy">
+          <div class="product-info">
+            <p class="tag">Domáci tréning</p>
+            <h3>Odporové gumy</h3>
+            <p>Sada troch gúm s rôznym odporom na rozcvičku, rehabilitáciu aj posilňovanie.</p>
+            <div class="product-footer">
+              <span class="price">14,50 €</span>
+              <button class="add-to-cart" data-name="Odporové gumy" data-price="14.50">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+xaB2aWhhZGxvPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+UsO9Y2hsb3N0bsOpIMWhdmloYWRsbyBzIMSNaWVybnltaSByw7rEjWthbWkuPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIiBmaWxsPSIjZWRmMmViIi8+CiAgPHBhdGggZD0iTTE5OCAxNTRjLTk2IDEwNC04MiAyMzAgMjEgMjY4IDcwIDI1IDE0Ny0xNCAxNzQtODYgMzQtOTAtMTktMTY2LTkyLTE1Ny01MiA3LTgyIDQzLTg0IDkyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmMjhjMjgiIHN0cm9rZS13aWR0aD0iMTgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik00MDUgMTU0Yzk1IDEwNCA4MiAyMzAtMjIgMjY4LTU0IDIwLTExNCAxLTE1My00NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cmVjdCB4PSIxNTMiIHk9IjEwOCIgd2lkdGg9IjkyIiBoZWlnaHQ9IjQ2IiByeD0iMjMiIHRyYW5zZm9ybT0icm90YXRlKC0yOCAxOTkgMTMxKSIgZmlsbD0iIzE3MjAxZCIvPgogIDxyZWN0IHg9IjM5NiIgeT0iMTA4IiB3aWR0aD0iOTIiIGhlaWdodD0iNDYiIHJ4PSIyMyIgdHJhbnNmb3JtPSJyb3RhdGUoMjggNDQyIDEzMSkiIGZpbGw9IiMxNzIwMWQiLz4KICA8Y2lyY2xlIGN4PSI0ODAiIGN5PSIzMzUiIHI9IjU4IiBmaWxsPSIjMjQ2YjlmIi8+CiAgPHBhdGggZD0iTTE2MCA0MTBoMzIwIiBzdHJva2U9IiNjYmQ2Y2YiIHN0cm9rZS13aWR0aD0iMjAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K" alt="Švihadlo">
+          <div class="product-info">
+            <p class="tag">Kondícia</p>
+            <h3>Rýchlostné švihadlo</h3>
+            <p>Nastaviteľné švihadlo na kondičný tréning, spaľovanie energie a koordináciu.</p>
+            <div class="product-footer">
+              <span class="price">11,90 €</span>
+              <button class="add-to-cart" data-name="Rýchlostné švihadlo" data-price="11.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+Rml0bmVzcyBydWthdmljZTwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPlDDoXIgZml0bmVzcyBydWthdsOtYyBuYSBzdmV0bG9tIHBvemFkw60uPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIiBmaWxsPSIjZWRmMmViIi8+CiAgPHBhdGggZD0iTTE5MCAxODBjMC0zOSAyOC03MCA2Ni03MCA0NyAwIDg0IDQyIDg0IDk0djE0MmMwIDI2LTIyIDQ4LTQ4IDQ4aC02OGMtMzQgMC02Mi0yOC02Mi02MlYyMjJjMC0yMyAxMS0zOCAyOC00MnoiIGZpbGw9IiMxNzIwMWQiLz4KICA8cGF0aCBkPSJNMzAwIDE4MGMwLTM5IDI4LTcwIDY2LTcwIDQ3IDAgODQgNDIgODQgOTR2MTQyYzAgMjYtMjIgNDgtNDggNDhoLTY4Yy0zNCAwLTYyLTI4LTYyLTYyVjIyMmMwLTIzIDExLTM4IDI4LTQyeiIgZmlsbD0iIzJlOGI1NyIvPgogIDxyZWN0IHg9IjE5NCIgeT0iMzAwIiB3aWR0aD0iMTEyIiBoZWlnaHQ9IjU2IiByeD0iMTgiIGZpbGw9IiNmMjhjMjgiLz4KICA8cmVjdCB4PSIzMDQiIHk9IjMwMCIgd2lkdGg9IjExMiIgaGVpZ2h0PSI1NiIgcng9IjE4IiBmaWxsPSIjMjQ2YjlmIi8+CiAgPHBhdGggZD0iTTIxOCAxNTRoMzVNMjg2IDE1NGgzNU0zMjggMTU0aDM1TTM5NCAxNTRoMzUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNyIvPgogIDxwYXRoIGQ9Ik0xNjAgNDEwaDMyMCIgc3Ryb2tlPSIjY2JkNmNmIiBzdHJva2Utd2lkdGg9IjIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==" alt="Fitness rukavice">
+          <div class="product-info">
+            <p class="tag">Fitness vybavenie</p>
+            <h3>Fitness rukavice</h3>
+            <p>Pohodlné rukavice s pevným úchopom, ktoré chránia ruky pri cvičení s činkami.</p>
+            <div class="product-footer">
+              <span class="price">16,90 €</span>
+              <button class="add-to-cart" data-name="Fitness rukavice" data-price="16.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card featured">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+UHJvdGXDrW5vdsO9IHNoYWtlcjwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPlplbGVuw70gcHJvdGXDrW5vdsO9IHNoYWtlciBzIG1pZXJrb3UuPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iNDgwIiBmaWxsPSIjZWRmMmViIi8+CiAgPHBhdGggZD0iTTIyOCAxMzhoMTg0bC0zMCAyNzRIMjU4eiIgZmlsbD0iIzJlOGI1NyIvPgogIDxwYXRoIGQ9Ik0yNTAgMTc2aDE0MGwtMjAgMTk4SDI3MHoiIGZpbGw9IiNkOGYwZGYiIG9wYWNpdHk9Ii42OCIvPgogIDxyZWN0IHg9IjIxOCIgeT0iOTIiIHdpZHRoPSIyMDQiIGhlaWdodD0iNTgiIHJ4PSIxOCIgZmlsbD0iIzE3MjAxZCIvPgogIDxyZWN0IHg9IjI1NSIgeT0iNjAiIHdpZHRoPSIxMzAiIGhlaWdodD0iNDIiIHJ4PSIxNCIgZmlsbD0iIzI0NmI5ZiIvPgogIDxwYXRoIGQ9Ik0zMDIgMjEyaDU0TTI5OCAyNThoNDZNMjkyIDMwNGg1NiIgc3Ryb2tlPSIjMTcyMDFkIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii41OCIvPgogIDxjaXJjbGUgY3g9IjQ2NSIgY3k9IjEzMiIgcj0iNTYiIGZpbGw9IiNmMjhjMjgiLz4KICA8cGF0aCBkPSJNMTYwIDQxMGgzMjAiIHN0cm9rZT0iI2NiZDZjZiIgc3Ryb2tlLXdpZHRoPSIyMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPgo=" alt="Proteínový shaker">
+          <div class="product-info">
+            <p class="tag">Regenerácia</p>
+            <h3>Proteínový shaker</h3>
+            <p>Praktický shaker s mierkou a sitkom na prípravu proteínových nápojov po tréningu.</p>
+            <div class="product-footer">
+              <span class="price">8,90 €</span>
+              <button class="add-to-cart" data-name="Proteínový shaker" data-price="8.90">Kúpiť</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cart-section" id="kosik">
+      <div class="section-heading">
+        <p class="eyebrow">Košík</p>
+        <h2>Tvoja objednávka</h2>
+      </div>
+
+      <div class="cart-box">
+        <div id="cart-items" class="cart-items">
+          <p class="empty-cart">Košík je zatiaľ prázdny.</p>
+        </div>
+        <div class="cart-summary">
+          <span>Celková suma</span>
+          <strong id="cart-total">0,00 €</strong>
+          <button id="order-button" type="button">Objednať</button>
+        </div>
+        <p id="order-message" class="order-message" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section contact" id="kontakt">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Máš otázku k objednávke?</h2>
+        <p>Napíš nám a poradíme s výberom vhodného doplnku pre tvoj tréning.</p>
+      </div>
+      <form>
+        <label for="meno">Meno</label>
+        <input id="meno" type="text" placeholder="Tvoje meno">
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="tvoj@email.sk">
+
+        <label for="sprava">Správa</label>
+        <textarea id="sprava" rows="4" placeholder="S čím ti môžeme pomôcť?"></textarea>
+
+        <button type="submit">Odoslať správu</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ActiveGear. Peter Šoltys.</p>
+  </footer>
+  <script>
+const cart = [];
+
+const cartCount = document.getElementById("cart-count");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const orderButton = document.getElementById("order-button");
+const orderMessage = document.getElementById("order-message");
+const addButtons = document.querySelectorAll(".add-to-cart");
+
+function formatPrice(value) {
+  return value.toFixed(2).replace(".", ",") + " €";
+}
+
+function renderCart() {
+  cartItems.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p class="empty-cart">Košík je zatiaľ prázdny.</p>';
+    cartCount.textContent = "0";
+    cartTotal.textContent = "0,00 €";
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    const row = document.createElement("div");
+    row.className = "cart-row";
+    row.innerHTML = `
+      <div>
+        <strong>${item.name}</strong>
+        <span>${formatPrice(item.price)}</span>
+      </div>
+      <button type="button" aria-label="Odstrániť produkt ${item.name}" data-index="${index}">Odstrániť</button>
+    `;
+
+    cartItems.appendChild(row);
+  });
+
+  cartCount.textContent = String(cart.length);
+  cartTotal.textContent = formatPrice(total);
+}
+
+addButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    cart.push({
+      name: button.dataset.name,
+      price: Number(button.dataset.price)
+    });
+
+    orderMessage.textContent = `${button.dataset.name} bol pridaný do košíka.`;
+    renderCart();
+  });
+});
+
+cartItems.addEventListener("click", (event) => {
+  const button = event.target.closest("button");
+
+  if (!button) {
+    return;
+  }
+
+  const index = Number(button.dataset.index);
+  cart.splice(index, 1);
+  orderMessage.textContent = "Produkt bol odstránený z košíka.";
+  renderCart();
+});
+
+orderButton.addEventListener("click", () => {
+  if (cart.length === 0) {
+    orderMessage.textContent = "Najprv pridaj do košíka aspoň jeden produkt.";
+    return;
+  }
+
+  cart.length = 0;
+  renderCart();
+  orderMessage.textContent = "Objednávka bola úspešne odoslaná. Ďakujeme za nákup!";
+});
+
+renderCart();
+
+</script>
+</body>
+</html>
